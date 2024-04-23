@@ -32,7 +32,7 @@ export async function bump() {
         count += 1;
 
         console.log("[" + date + "] bump count: " + count);
-        await channel.sendSlash(process.env.BOT_ID, 'bump');
+        //await channel.sendSlash(process.env.BOT_ID, 'bump');
 
         let delay_length: number = 1000 * 60 * 60 * 2;  // 2 hours
         delay_length += rng_minutes(2, 15); // add 2 to 15 minutes as a delay

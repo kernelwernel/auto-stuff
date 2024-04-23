@@ -1,6 +1,7 @@
-FROM node:18-alpine
+FROM node:18-alpine as build
 WORKDIR /app
 COPY . .
 RUN npm install -y
-CMD ["node", "run start"]
+ENV NODE_ENV=production
+CMD ["npm", "start"]
 EXPOSE 3000

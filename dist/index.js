@@ -36,18 +36,57 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.client = void 0;
-//const { Client, Events, GatewayIntentBits } = require('discord.js');
-var _a = require('discord.js-selfbot-v13'), Client = _a.Client, Events = _a.Events, GatewayIntentBits = _a.GatewayIntentBits;
-var bump_1 = require("./bump");
+exports.bump = void 0;
+var Client = require('discord.js-selfbot-v13').Client;
 require("dotenv/config");
-//const client = new Client({ intents: [GatewayIntentBits.Guilds] });
-exports.client = new Client();
-exports.client.on('ready', function () { return __awaiter(void 0, void 0, void 0, function () {
+var client = new Client();
+function delay(ms) {
+    return new Promise(function (resolve) { return setTimeout(resolve, ms); });
+}
+function rng_minutes(min, max) {
+    min -= 1; // because of .ceil()
+    min *= 1000 * 60;
+    max *= 1000 * 60;
+    return Math.ceil(Math.random() * (max - min) + min);
+}
+function rng_seconds(min, max) {
+    min *= 1000;
+    max *= 1000;
+    return Math.ceil(Math.random() * (max - min) + min);
+}
+function bump() {
+    return __awaiter(this, void 0, void 0, function () {
+        var channel, count, d, date, delay_length;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    channel = client.channels.cache.get(process.env.CHANNEL);
+                    count = 0;
+                    _a.label = 1;
+                case 1:
+                    if (!true) return [3 /*break*/, 3];
+                    d = new Date();
+                    date = d.toLocaleTimeString();
+                    count += 1;
+                    console.log("[" + date + "] bump count: " + count);
+                    delay_length = 1000 * 60 * 60 * 2;
+                    delay_length += rng_minutes(2, 15); // add 2 to 15 minutes as a delay
+                    delay_length += rng_seconds(2, 59); // add 2 to 59 seconds as a delay
+                    return [4 /*yield*/, delay(delay_length)];
+                case 2:
+                    _a.sent();
+                    return [3 /*break*/, 1];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.bump = bump;
+client.on('ready', function () { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
-        console.log("".concat(exports.client.user.username, " is ready!"));
-        (0, bump_1.bump)();
+        console.log("".concat(client.user.username, " is ready!"));
+        bump();
         return [2 /*return*/];
     });
 }); });
-exports.client.login(process.env.TOKEN);
+client.login(process.env.TOKEN);
