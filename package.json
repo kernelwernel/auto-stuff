@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "discord.js-selfbot-v13": "^3.1.4",
+    "dotenv": "^16.4.5",
+    "typescript": "^5.4.5"
+  },
+  "name": "auto-stuff",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc *.ts -outDir dist/ && node dist/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
