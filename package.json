@@ -9,7 +9,7 @@
   "version": "1.0.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node bump.ts"
+    "start": "ts-node bump.ts --no-output"
   },
   "author": "",
   "license": "ISC",

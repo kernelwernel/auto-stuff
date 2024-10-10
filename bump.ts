@@ -4,7 +4,7 @@ import 'dotenv/config'
 
 const client = new Client();
 const args = process.argv.slice(2);
-const has_output: boolean = (args[0] == "--no-output");
+const has_output: boolean = (args[0] != "--no-output");
 
 function delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
